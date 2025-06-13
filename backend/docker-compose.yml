@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  backend:
+    image: iamsumitkumar/java-project-backend:${BUILD_ID}
+    ports:
+      - "9090:8080"
+    container_name: java-backend
