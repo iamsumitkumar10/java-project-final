@@ -1,7 +1,8 @@
 pipeline{
-    agent{
-        label "aws-ec2-agent"
-    }
+    // agent{
+    //     label "aws-ec2-agent"
+    // }
+    agent any
     stages{
 
         stage("git checkout"){

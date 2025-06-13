@@ -10,7 +10,7 @@ function App() {
     const employee = { name, designation };
 
     try {
-      const response = await fetch('http://foo.bar.com//api/employees', {
+      const response = await fetch('http://localhost:8080/api/employees', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
