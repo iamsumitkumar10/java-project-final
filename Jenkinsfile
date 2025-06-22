@@ -74,7 +74,7 @@ pipeline {
                         // sh "BUILD_ID=$BUILD_ID docker-compose up -d"
 
                         sh 'kubectl apply -f frontend-deployment.yaml'
-                        sh 'kubectl apply -f fronted-service.yaml'
+                        sh 'kubectl apply -f frontend-service.yaml'
                     }
                 }
             }
