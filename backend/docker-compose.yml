@@ -4,5 +4,5 @@ services:
   backend:
     image: iamsumitkumar/java-project-backend:${BUILD_ID}
     ports:
-      - "9090:8080"
+      - "9090:9090"
     container_name: java-backend
