@@ -51,9 +51,12 @@ pipeline {
             steps {
                 dir('backend') {
                     script {
-                        echo "🚀 Deploying backend with Docker Compose..."
-                        sh "BUILD_ID=$BUILD_ID docker-compose down || true"
-                        sh "BUILD_ID=$BUILD_ID docker-compose up -d"
+                        echo "🚀 Deploying backend with minikube ..."
+                        // sh "BUILD_ID=$BUILD_ID docker-compose down || true"
+                        // sh "BUILD_ID=$BUILD_ID docker-compose up -d"
+                        sh 'kubectl apply -f backend-deployment.yaml'
+                        sh 'kubectl apply -f backend-service.yaml'
+                        
                     }
                 }
             }
@@ -63,9 +66,12 @@ pipeline {
             steps {
                 dir('frontend') {
                     script {
-                        echo "🚀 Deploying frontend with Docker Compose..."
-                        sh "BUILD_ID=$BUILD_ID docker-compose down || true"
-                        sh "BUILD_ID=$BUILD_ID docker-compose up -d"
+                        echo "🚀 Deploying frontend with minikube ..."
+                        // sh "BUILD_ID=$BUILD_ID docker-compose down || true"
+                        // sh "BUILD_ID=$BUILD_ID docker-compose up -d"
+
+                        sh 'kubectl apply -f frontend-deployment.yaml'
+                        sh 'kubectl apply -f fronted-service.yaml'
                     }
                 }
             }

@@ -1,0 +1,22 @@
+# backend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-project-backend
+  labels:
+    app: java-project-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-project-backend
+  template:
+    metadata:
+      labels:
+        app: java-project-backend
+    spec:
+      containers:
+      - name: java-project-backend
+        image: iamsumitkumar/java-project-backend:5
+        ports:
+        - containerPort: 9090

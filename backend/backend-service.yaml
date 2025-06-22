@@ -1,0 +1,15 @@
+# filename -- backend-service.yaml
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-project-backend
+spec:
+  type: NodePort
+  selector:
+    app: java-project-backend
+  ports:
+    - port: 9090
+      targetPort: 9090
+      nodePort: 30019
