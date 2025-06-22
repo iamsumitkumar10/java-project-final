@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: java-project-backend
-        image: iamsumitkumar/java-project-backend:5
+        image: iamsumitkumar/java-project-backend:23
         ports:
         - containerPort: 9090

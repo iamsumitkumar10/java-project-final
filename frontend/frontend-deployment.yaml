@@ -18,6 +18,6 @@ spec:
     spec:
       containers:
       - name: java-project-final
-        image: iamsumitkumar/java-project-frontend:5
+        image: iamsumitkumar/java-project-frontend:23
         ports:
         - containerPort: 3000
