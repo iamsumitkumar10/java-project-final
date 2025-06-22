@@ -10,6 +10,7 @@ pipeline {
             }
         }
 
+
         stage('docker push backend') {
             steps {
                 dir('backend') {
