@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        KUBECONFIG = '/home/sumit/.kube/config'
+    }
 
     stages {
         stage("git checkout") {
