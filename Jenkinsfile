@@ -2,9 +2,9 @@ pipeline {
     agent {
         label 'aws-ec2-agent'
     }
-    environment {
-        KUBECONFIG = '/home/sumit/.kube/config'
-    }
+    // environment {
+    //     KUBECONFIG = '/home/sumit/.kube/config'
+    // }
 
     stages {
         stage("git checkout") {
@@ -57,10 +57,10 @@ pipeline {
                 dir('backend') {
                     script {
                         echo "🚀 Deploying backend with minikube ..."
-                        // sh "BUILD_ID=$BUILD_ID docker-compose down || true"
-                        // sh "BUILD_ID=$BUILD_ID docker-compose up -d"
-                        sh 'kubectl apply -f backend-deployment.yaml'
-                        sh 'kubectl apply -f backend-service.yaml'
+                        sh "BUILD_ID=$BUILD_ID docker-compose down || true"
+                        sh "BUILD_ID=$BUILD_ID docker-compose up -d"
+                        // sh 'kubectl apply -f backend-deployment.yaml'
+                        // sh 'kubectl apply -f backend-service.yaml'
                         
                     }
                 }
@@ -72,11 +72,11 @@ pipeline {
                 dir('frontend') {
                     script {
                         echo "🚀 Deploying frontend with minikube ..."
-                        // sh "BUILD_ID=$BUILD_ID docker-compose down || true"
-                        // sh "BUILD_ID=$BUILD_ID docker-compose up -d"
+                        sh "BUILD_ID=$BUILD_ID docker-compose down || true"
+                        sh "BUILD_ID=$BUILD_ID docker-compose up -d"
 
-                        sh 'kubectl apply -f frontend-deployment.yaml'
-                        sh 'kubectl apply -f frontend-service.yaml'
+                        // sh 'kubectl apply -f frontend-deployment.yaml'
+                        // sh 'kubectl apply -f frontend-service.yaml'
                     }
                 }
             }
