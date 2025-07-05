@@ -1,10 +1,12 @@
 pipeline {
-    agent {
-        label 'aws-ec2-agent'
-    }
-    // environment {
-    //     KUBECONFIG = '/home/sumit/.kube/config'
+    // agent {
+    //     label 'aws-ec2-agent'
     // }
+
+    agent any
+    environment {
+        KUBECONFIG = '/home/sumit/.kube/config'
+    }
 
     stages {
         stage("git checkout") {
@@ -66,6 +68,18 @@ pipeline {
                 }
             }
         }
+        stage(' backend kubernetes deploy') {
+            steps {
+                dir('backend/k8s') {
+                    script {
+                        echo "🚀 Deploying backend with minikube ..."
+                        sh 'kubectl apply -f backend-deployment.yaml'
+                        sh 'kubectl apply -f backend-service.yaml'
+                        
+                    }
+                }
+            }
+        }
 
         stage('docker-compose deploy frontend') {
             steps {
@@ -77,6 +91,17 @@ pipeline {
 
                         // sh 'kubectl apply -f frontend-deployment.yaml'
                         // sh 'kubectl apply -f frontend-service.yaml'
+                    }
+                }
+            }
+        }
+        stage('frontend kubernetes deploy') {
+            steps {
+                dir('frontend/k8s') {
+                    script {
+                        echo "🚀 Deploying frontend with minikube ..."
+                        sh 'kubectl apply -f frontend-deployment.yaml'
+                        sh 'kubectl apply -f frontend-service.yaml'
                     }
                 }
             }
